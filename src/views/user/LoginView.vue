@@ -12,7 +12,7 @@
       >
         <div class="max-w-md mx-auto">
           <div>
-            <h1 class="text-2xl font-semibold">Login to webpage</h1>
+            <h1 class="text-2xl font-semibold">Login To ANIME-W</h1>
           </div>
           <div class="divide-y divide-gray-200">
             <Form @submit="handleLogin" :validation-schema="schema">
@@ -68,7 +68,7 @@
 <script>
 import { Form, Field, ErrorMessage } from 'vee-validate'
 import * as yup from 'yup'
-// import AuthService from '@/service/AuthService.js'
+import AuthService from '@/service/AuthService.js'
 export default {
   name: 'LoginView',
   components: {
@@ -88,15 +88,15 @@ export default {
     }
   },
   methods: {
-    // handleLogin(user) {
-    // //   AuthService.login(user)
-    // //     .then(() => {
-    // //       this.$router.push({ path: '/' })
-    // //     })
-    // //     .catch(() => {
-    // //       this.message = 'could not login'
-    // //     })
-    // }
+    handleLogin(user) {
+      AuthService.login(user)
+        .then(() => {
+          this.$router.push({ path: '/' })
+        })
+        .catch(() => {
+          this.message = 'could not login'
+        })
+    }
   }
 }
 </script>

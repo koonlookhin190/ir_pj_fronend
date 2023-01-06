@@ -13,6 +13,12 @@ export default {
   name: 'HomeView',
   components: {
     HelloWorld
+  },
+  mounted() {
+    let user = localStorage.getItem('user')
+    if (!user) {
+      this.$router.push('login')
+    }
   }
 }
 </script>
