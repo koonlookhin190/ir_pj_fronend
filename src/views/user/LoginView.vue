@@ -89,6 +89,7 @@ export default {
   },
   methods: {
     handleLogin(user) {
+      console.log(user)
       AuthService.login(user)
         .then(() => {
           this.$router.push({ path: '/' })
