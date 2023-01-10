@@ -40,14 +40,20 @@
 
         <button
           @click="$router.push({ path: '/about' })"
-          class="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2"
+          class="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mrs-2"
         >
           Bookmark
         </button>
       </div>
+      <dropdown
+        v-model="select_search"
+        :options="choice"
+        :selected="choose"
+        v-on:updateOption="methodToRunOnSelect"
+      ></dropdown>
       <!-- This is an example component -->
       <div class="relative mx-auto text-gray-600 lg:block hidden">
-        <Form @submit="search" :validation-schema="schema">
+        <Form @submit="check_search" :validation-schema="schema">
           <Field
             class="border-2 border-gray-300 bg-white h-10 pl-2 pr-8 rounded-lg text-sm focus:outline-none"
             type="input"
@@ -105,19 +111,26 @@ import AuthService from '@/service/AuthService.js'
 import AnimeService from '@/service/AnimeService.js'
 import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
+import dropdown from 'vue-dropdowns'
 export default {
   inject: ['GStore'],
   name: 'NavBar',
   components: {
     Form,
-    Field
+    Field,
+    dropdown
   },
   data() {
     const schema = yup.object().shape({
       input: yup.string()
     })
     return {
-      schema
+      schema,
+      select_search: null,
+      choice: [{ name: 'Title' }, { name: 'Description' }],
+      choose: {
+        name: 'Selected search'
+      }
     }
   },
   methods: {
@@ -125,10 +138,20 @@ export default {
       AuthService.logout()
       this.$router.go()
     },
-    search(input) {
-      console.log(input)
-      AnimeService.getAnimeList(input)
-      setTimeout(() => this.$router.push('animeList'), 200)
+    methodToRunOnSelect(payload) {
+      this.choose = payload
+    },
+    check_search(input) {
+      if (
+        this.choose.name == 'Selected search' ||
+        this.choose.name == 'Title'
+      ) {
+        AnimeService.getAnimeList(input)
+        setTimeout(() => this.$router.push('animeList'), 200)
+      } else {
+        AnimeService.getAnimeList_description(input)
+        setTimeout(() => this.$router.push('animeList'), 200)
+      }
     }
   }
 }

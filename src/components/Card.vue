@@ -7,7 +7,7 @@
       href=""
     >
       <!-- Image Cover -->
-      <img :src="item.images" class="w-full rounded shadow" />
+      <img :src="item.images" class="rounded shadow h-90 w-80" />
       <!-- Title -->
       <h3 class="flex text-white font-bold mt-5">{{ item.title }}</h3>
 
