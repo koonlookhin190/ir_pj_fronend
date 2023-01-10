@@ -127,7 +127,7 @@ export default {
     search(input) {
       console.log(input)
       AnimeService.getAnimeList(input)
-      setTimeout(() => this.$router.push('animeList'), 37000)
+      setTimeout(() => this.$router.push('animeList'), 200)
     }
   }
 }
