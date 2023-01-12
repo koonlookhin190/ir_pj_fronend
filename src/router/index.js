@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/user/LoginView.vue'
 import AnimeListView from '../views/anime/AnimeListView.vue'
+import AnimeDetailView from '../views/anime/AnimeDetail.vue'
+import GStore from '@/store'
 const routes = [
   {
     path: '/',
@@ -26,6 +28,19 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  },
+  {
+    path: '/animeDetail/:id',
+    name: 'animeDetail',
+    props: true,
+    component: AnimeDetailView,
+    beforeEnter: (to) => {
+      console.log(to.params.id)
+      GStore.animeDetail = GStore.animeList.info.filter(
+        (itemInArray) => itemInArray.mal_id == to.params.id
+      )
+      console.log(GStore.animeDetail)
+    }
   }
 ]
 
