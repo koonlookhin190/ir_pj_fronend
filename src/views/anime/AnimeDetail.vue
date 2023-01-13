@@ -42,14 +42,40 @@
             </p>
           </div>
         </div>
+
+        <button
+          @click="add_bookmark(input_info)"
+          class="bg-blue-500 text-white rounded-md px-2 py-1"
+        >
+          Add bookmark
+        </button>
       </div>
     </div>
   </div>
 </template>
 <script>
+// import { Form } from 'vee-validate'
+// import * as yup from 'yup'
+import UserService from '@/service/UserService.js'
 export default {
   inject: ['GStore'],
-  name: 'AnimeDetailView'
+  name: 'AnimeDetailView',
+  data() {
+    return {
+      input_info: {
+        username: this.GStore.currentUser.username,
+        anime: this.GStore.animeDetail
+      }
+    }
+  },
+  methods: {
+    add_bookmark(input) {
+      console.log(input)
+      UserService.add_bookmark(input).then(() => {
+        console.log(this.GStore.currentUser)
+      })
+    }
+  }
 }
 </script>
 <style>
