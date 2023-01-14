@@ -88,7 +88,9 @@ export default {
         this.GStore.currentUser.id,
         this.GStore.animeDetail[0].mal_id,
         this.choose.name
-      )
+      ).then(() => {
+        alert('Success add favorite')
+      })
     },
     methodToRunOnSelect(payload) {
       this.choose = payload

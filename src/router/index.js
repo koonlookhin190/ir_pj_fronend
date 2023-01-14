@@ -4,6 +4,8 @@ import LoginView from '../views/user/LoginView.vue'
 import AnimeListView from '../views/anime/AnimeListView.vue'
 import AnimeDetailView from '../views/anime/AnimeDetail.vue'
 import GStore from '@/store'
+import BookmarkView from '../views/user/BookmarkView.vue'
+import UserService from '@/service/UserService'
 const routes = [
   {
     path: '/',
@@ -40,6 +42,21 @@ const routes = [
         (itemInArray) => itemInArray.mal_id == to.params.id
       )
       console.log(GStore.animeDetail)
+    }
+  },
+  {
+    path: '/bookmark',
+    name: 'bookmarkDetail',
+    props: true,
+    component: BookmarkView,
+    beforeEnter: () => {
+      console.log(GStore.currentUser.id)
+      return UserService.get_bookmark(GStore.currentUser.id).then(
+        (response) => {
+          GStore.bookmarkList = response.data
+          console.log(GStore.bookmarkList)
+        }
+      )
     }
   }
 ]
