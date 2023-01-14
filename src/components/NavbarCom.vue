@@ -94,7 +94,6 @@
         >
           Login
         </button>
-
         <button
           v-if="GStore.currentUser"
           @click="logout"
