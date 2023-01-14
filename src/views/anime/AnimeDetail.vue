@@ -18,9 +18,7 @@
         >
           <div class="pt-6 pb-4 space-y-2">
             <h1 class="text-3xl font-bold">Title</h1>
-            <p>
-              {{ item.title }}
-            </p>
+            <p>{{ item.title }}</p>
           </div>
           <div class="pt-6 pb-4 space-y-2">
             <h1 class="text-3xl font-bold">Synopsis</h1>
@@ -41,15 +39,63 @@
               {{ item.studios }}
             </p>
           </div>
+          <dropdown
+            v-model="select"
+            :options="choice"
+            :selected="choose"
+            v-on:updateOption="methodToRunOnSelect"
+          ></dropdown>
+          <button
+            @click="add_bookmark()"
+            class="bg-blue-500 text-white rounded-md px-2 py-1 m-auto"
+          >
+            Add Favorite
+          </button>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+// import { Form } from 'vee-validate'
+// import * as yup from 'yup'
+import UserService from '@/service/UserService.js'
+import dropdown from 'vue-dropdowns'
 export default {
   inject: ['GStore'],
-  name: 'AnimeDetailView'
+  name: 'AnimeDetailView',
+  components: {
+    dropdown
+  },
+  data() {
+    return {
+      select: null,
+      choice: [
+        { name: '1' },
+        { name: '2' },
+        { name: '3' },
+        { name: '4' },
+        { name: '5' }
+      ],
+      choose: {
+        name: '1'
+      }
+    }
+  },
+  methods: {
+    add_bookmark() {
+      UserService.add_bookmark(
+        this.GStore.currentUser.id,
+        this.GStore.animeDetail[0].mal_id,
+        this.choose.name
+      ).then(() => {
+        alert('Success add favorite')
+      })
+    },
+    methodToRunOnSelect(payload) {
+      this.choose = payload
+    }
+  }
 }
 </script>
 <style>

@@ -39,7 +39,7 @@
         </button>
 
         <button
-          @click="$router.push({ path: '/about' })"
+          @click="$router.push({ path: '/bookmark' })"
           class="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mrs-2"
         >
           Bookmark
@@ -94,7 +94,6 @@
         >
           Login
         </button>
-
         <button
           v-if="GStore.currentUser"
           @click="logout"
