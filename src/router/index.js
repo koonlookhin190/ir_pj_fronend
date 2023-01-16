@@ -15,7 +15,7 @@ const routes = [
     beforeEnter: () => {
       return AnimeService.getTop_12().then((response) => {
         GStore.animeTop = response.data
-        console.log(GStore.animeTop)
+        GStore.animeList = response.data
       })
     }
   },
@@ -45,16 +45,9 @@ const routes = [
     component: AnimeDetailView,
     beforeEnter: (to) => {
       console.log(to.params.id)
-      if (GStore.animeList != []) {
-        GStore.animeDetail = GStore.animeList.info.filter(
-          (itemInArray) => itemInArray.mal_id == to.params.id
-        )
-      } else {
-        GStore.animeDetail = GStore.animeTop.top_12.filter(
-          (itemInArray) => itemInArray.mal_id == to.params.id
-        )
-      }
-
+      GStore.animeDetail = GStore.animeList.info.filter(
+        (itemInArray) => itemInArray.mal_id == to.params.id
+      )
       console.log(GStore.animeDetail)
     }
   },
