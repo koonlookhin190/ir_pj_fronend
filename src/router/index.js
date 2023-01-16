@@ -6,11 +6,18 @@ import AnimeDetailView from '../views/anime/AnimeDetail.vue'
 import GStore from '@/store'
 import BookmarkView from '../views/user/BookmarkView.vue'
 import UserService from '@/service/UserService'
+import AnimeService from '@/service/AnimeService'
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    beforeEnter: () => {
+      return AnimeService.getTop_12().then((response) => {
+        GStore.animeTop = response.data
+        console.log(GStore.animeTop)
+      })
+    }
   },
   {
     path: '/login',
@@ -38,9 +45,16 @@ const routes = [
     component: AnimeDetailView,
     beforeEnter: (to) => {
       console.log(to.params.id)
-      GStore.animeDetail = GStore.animeList.info.filter(
-        (itemInArray) => itemInArray.mal_id == to.params.id
-      )
+      if (GStore.animeList != []) {
+        GStore.animeDetail = GStore.animeList.info.filter(
+          (itemInArray) => itemInArray.mal_id == to.params.id
+        )
+      } else {
+        GStore.animeDetail = GStore.animeTop.top_12.filter(
+          (itemInArray) => itemInArray.mal_id == to.params.id
+        )
+      }
+
       console.log(GStore.animeDetail)
     }
   },

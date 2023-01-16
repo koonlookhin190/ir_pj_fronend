@@ -28,5 +28,8 @@ export default {
       .catch((error) => {
         return console.log(error)
       })
+  },
+  getTop_12() {
+    return apiClient.get('/get_topList')
   }
 }
