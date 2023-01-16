@@ -4,7 +4,7 @@
 
 **-----------------------------------------Another link to my repo------------------------------------------------------------**
 
-My ir_project_frontend : https://github.com/koonlookhin190/ir_pj_frontend
+My ir_project_backend : https://github.com/koonlookhin190/ir_pj_backend
 
 My test_frontend : https://github.com/koonlookhin190/Ir_pj_test_frontend
 
