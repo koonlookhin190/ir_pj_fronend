@@ -1,24 +1,26 @@
-# ir_pj_fontend
+#  🔥 This is my ir_project_frontend  🔥
 
-## Project setup
-```
-npm install
-```
+✍️Make by : Krit Tipnuan  🥸  Student ID : 632115002
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+**-----------------------------------------Another link to my repo------------------------------------------------------------**
 
-### Compiles and minifies for production
-```
-npm run build
-```
+My ir_project_frontend : https://github.com/koonlookhin190/ir_pj_frontend
 
-### Lints and fixes files
-```
-npm run lint
-```
+My test_frontend : https://github.com/koonlookhin190/Ir_pj_test_frontend
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+**------------------------------------------------Images------------------------------------------------------------------------**
+
+### 📚 **Login page** 📚
+<img src="https://cdn.discordapp.com/attachments/850725114702069790/1064564136085827614/image.png">
+
+### 📚 **Home page** 📚
+<img src="https://cdn.discordapp.com/attachments/850725114702069790/1064564036836020276/image.png">
+
+### 📚 **Bookmark page** 📚
+<img src="https://cdn.discordapp.com/attachments/850725114702069790/1064564801780580383/image.png">
+
+### 📚 **List from search page** 📚
+<img src="https://cdn.discordapp.com/attachments/850725114702069790/1064564882458025994/image.png">
+
+### 📚 **Detail anime page** 📚
+<img src="https://cdn.discordapp.com/attachments/850725114702069790/1064565069196836894/image.png">
