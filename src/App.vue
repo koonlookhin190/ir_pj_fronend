@@ -1,11 +1,18 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <NavbarCom v-if="GStore.currentUser"></NavbarCom>
   <router-view />
 </template>
+<script>
+import NavbarCom from '@/components/NavbarCom.vue'
 
+export default {
+  inject: ['GStore'],
+  name: 'HomeView',
+  components: {
+    NavbarCom
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
